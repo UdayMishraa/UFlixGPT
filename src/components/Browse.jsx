@@ -1,7 +1,7 @@
 import React from "react";
 
 const Browse = () => {
-	return <div>Browse</div>;
+	return <div className="w-full">Browse</div>;
 };
 
 export default Browse;

@@ -1,10 +1,17 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import checkValidData from "../utils/validate.js";
+import { auth } from "../utils/firebase.js";
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
+	const navigate = useNavigate();
 
 	const fullName = useRef(null);
 	const email = useRef(null);
@@ -27,11 +34,50 @@ const Login = () => {
 		);
 		setErrorMessage(message);
 
-		console.log(
-			fullName.current?.value,
-			email.current?.value,
-			password.current?.value
-		);
+		if (message) {
+			return;
+		}
+
+		// Creating a nSign In/ Sign Up Functionality
+		if (!isSignInForm) {
+			//Sign Up
+			createUserWithEmailAndPassword(
+				auth,
+				email.current?.value,
+				password.current?.value
+			)
+				.then((userCredential) => {
+					// Signed up
+					const user = userCredential.user;
+					console.log(user);
+					navigate("/browse");
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					setErrorMessage(`${errorCode}: ${errorMessage}`);
+				});
+		} else {
+			//Sign In
+			signInWithEmailAndPassword(
+				auth,
+				email.current?.value,
+				password.current?.value
+			)
+				.then((userCredential) => {
+					// Signed in
+					const user = userCredential.user;
+					console.log(user);
+					navigate("/browse");
+
+					// ...
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					setErrorMessage(`${errorCode}: ${errorMessage}`);
+				});
+		}
 	};
 
 	const toggleSignInForm = () => {

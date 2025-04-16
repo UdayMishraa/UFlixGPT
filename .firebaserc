@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "netflix-gpt-56bb3"
-  }
+    "default": "uflixgpt"
+  },
+  "targets": {},
+  "etags": {}
 }

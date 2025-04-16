@@ -2,7 +2,12 @@
 
 - Starting up with the VITE bundler
 - Configured TailWindCSS
--
+- Added Validations
+- FireBase Setup
+- Deploying App to Production
+- Authentication
+- Sign Up a User Account
+- Implementing Sign in api
 
 # Features
 
