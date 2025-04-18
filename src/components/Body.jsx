@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
-import Browse from "./Browse";
-import GridLayout from "./GridLayout";
-import { createBrowserRouter } from "react-router-dom";
-import Login from "./Login";
-import { RouterProvider } from "react-router-dom";
+
+import { Outlet, RouterProvider } from "react-router-dom";
 import Header from "./Header";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
@@ -12,21 +9,6 @@ import { addUser, removeUser } from "../utils/userSlice";
 
 const Body = () => {
 	const dispatch = useDispatch();
-
-	const appRouter = createBrowserRouter([
-		{
-			path: "/",
-			element: <Login />,
-		},
-		{
-			path: "/browse",
-			element: <Browse />,
-		},
-		{
-			path: "/grid",
-			element: <GridLayout />,
-		},
-	]);
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
@@ -45,9 +27,9 @@ const Body = () => {
 	}, []);
 
 	return (
-		<div className="relative">
+		<div className="relative box-border">
 			<Header />
-			<RouterProvider router={appRouter} />
+			<Outlet />
 		</div>
 	);
 };

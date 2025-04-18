@@ -5,6 +5,7 @@ import { auth } from "../utils/firebase.js";
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
+	updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -49,8 +50,18 @@ const Login = () => {
 				.then((userCredential) => {
 					// Signed up
 					const user = userCredential.user;
+					updateProfile(user, {
+						displayName: fullName.current?.value,
+						photoURL: "https://example.com/jane-q-user/profile.jpg",
+					})
+						.then(() => {
+							navigate("/browse");
+						})
+						.catch((error) => {
+							setErrorMessage(error.message);
+						});
+
 					console.log(user);
-					navigate("/browse");
 				})
 				.catch((error) => {
 					const errorCode = error.code;
@@ -86,7 +97,7 @@ const Login = () => {
 
 	return (
 		<>
-			<div className="sm:bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg')] bg-cover bg-center h-svh w-svw bg-[black] font-urbanist flex sm:justify-center md:items-center">
+			<div className="@container sm:bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg')] bg-size-[100vh] bg-fixed bg-center min-h-[100vh] h-svh w-svw bg-[black] font-urbanist flex sm:justify-center md:items-center">
 				<div className="bg-[#000000cf] md:bg-[#000000d8] text-[rgb(255,255,255)] text-left p-10 flex items-center sm:w-96 w-full min-h-[500px] mt-10 bg-opacity-80">
 					<form className=" flex flex-col justify-start gap-8 md:gap-6 h-full w-full font-secondary text-[14px] ">
 						<h1 className="text-white text-3xl font-[800] font-urbanist ">
@@ -97,14 +108,14 @@ const Login = () => {
 								ref={fullName}
 								type="text"
 								placeholder="Full Name"
-								className="p-4  bg-[#80808030]  rounded-[2px]"
+								className="p-4 bg-[#80808030] rounded-[2px]"
 							/>
 						)}
 						<input
 							ref={email}
 							type="text"
 							placeholder="Email"
-							className="p-4  bg-[#80808030]  rounded-[2px]"
+							className="p-4 bg-[#80808030] rounded-[2px]"
 						/>
 						<input
 							ref={password}
