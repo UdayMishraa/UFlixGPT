@@ -7,13 +7,14 @@ import {
 	signInWithEmailAndPassword,
 	updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice.js";
+import { useDispatch } from "react-redux";
+import { PROFILE_LOGO } from "../utils/constants.js";
 
 const Login = () => {
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
-	const navigate = useNavigate();
-
+	const dispatch = useDispatch();
 	const fullName = useRef(null);
 	const email = useRef(null);
 	const password = useRef(null);
@@ -52,16 +53,15 @@ const Login = () => {
 					const user = userCredential.user;
 					updateProfile(user, {
 						displayName: fullName.current?.value,
-						photoURL: "https://example.com/jane-q-user/profile.jpg",
+						photoURL: PROFILE_LOGO,
 					})
 						.then(() => {
-							navigate("/browse");
+							const { uid, email, displayName, photoURL } = auth.currentUser;
+							dispatch(addUser({ uid, email, displayName, photoURL }));
 						})
 						.catch((error) => {
 							setErrorMessage(error.message);
 						});
-
-					console.log(user);
 				})
 				.catch((error) => {
 					const errorCode = error.code;
@@ -79,7 +79,6 @@ const Login = () => {
 					// Signed in
 					const user = userCredential.user;
 					console.log(user);
-					navigate("/browse");
 
 					// ...
 				})
@@ -97,8 +96,8 @@ const Login = () => {
 
 	return (
 		<>
-			<div className="@container sm:bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg')] bg-size-[100vh] bg-fixed bg-center min-h-[100vh] h-svh w-svw bg-[black] font-urbanist flex sm:justify-center md:items-center">
-				<div className="bg-[#000000cf] md:bg-[#000000d8] text-[rgb(255,255,255)] text-left p-10 flex items-center sm:w-96 w-full min-h-[500px] mt-10 bg-opacity-80">
+			<div className="@container sm:bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg')] bg-fixed bg-center min-h-[100vh] h-svh w-svw bg-gray-800 font-urbanist flex sm:justify-center bg-cover md:items-center">
+				<div className="bg-black/10 md:bg-[#000000d8] text-[rgb(255,255,255)] text-left p-10 flex items-center sm:w-96 w-full min-h-[500px] mt-10  backdrop-blur-md border border-black/20 rounded-2xl shadow-md">
 					<form className=" flex flex-col justify-start gap-8 md:gap-6 h-full w-full font-secondary text-[14px] ">
 						<h1 className="text-white text-3xl font-[800] font-urbanist ">
 							{isSignInForm ? "Sign In" : "Sign Up"}
@@ -125,7 +124,7 @@ const Login = () => {
 						/>
 						<p className="text-red-700 font-bold">{errorMessage}</p>
 						<button
-							className="bg-red-700 px-4 py-3 cursor-pointer"
+							className="hover:bg-red-700/90 bg-red-600"
 							onClick={(e) => {
 								e.preventDefault();
 								handleButtonClick();

@@ -1,8 +1,25 @@
 import React from "react";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import MoviesBackground from "./MoviesHeader";
+import MoviesLists from "./MoviesLists";
 
 const Browse = () => {
+	useNowPlayingMovies();
 	return (
-		<div className="w-[100vw] h-[100vh] bg-black pt-20 text-white">Browse</div>
+		<div className="w-full h-full bg-gray-800 text-white font-urbanist">
+			<MoviesBackground />
+			<MoviesLists />
+			{/* 
+			MainContainer
+			- Video BackGround
+			- Title 
+
+			SecondaryContainer
+			- Movie List 
+			   - Movie Card x n
+			
+			*/}
+		</div>
 	);
 };
 

@@ -8,6 +8,16 @@
 - Authentication
 - Sign Up a User Account
 - Implementing Sign in api
+- Fixing the Bug: Protecting the routes and work according to the auth change
+- using & register TMDB api
+- Received API Token
+- Created Custom Hooks
+- Updating store with movie data
+- Planning for Movie Background and Lists
+- Fetch Data for Trailer Video
+- Update store with Trailer Video Data
+- Embedded the Youtube Video in Background
+-
 
 # Features
 
