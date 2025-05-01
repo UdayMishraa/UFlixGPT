@@ -18,7 +18,7 @@ const MoviesHeader = () => {
 	const { original_title, overview, id } = mainMovie;
 
 	return (
-		<div className="relative h-full flex flex-col">
+		<div className="relative h-screen max-h-screen">
 			<MovieBackground movieId={id} />
 			<MovieTitle title={original_title} overview={overview} />
 		</div>

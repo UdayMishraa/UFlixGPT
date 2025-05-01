@@ -1,14 +1,15 @@
 import React from "react";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MoviesBackground from "./MoviesHeader";
-import MoviesLists from "./MoviesLists";
+
+import SecondContainer from "./SecondContainer";
 
 const Browse = () => {
 	useNowPlayingMovies();
 	return (
-		<div className="w-full h-full bg-gray-800 text-white font-urbanist">
+		<div className="w-full h-screen bg-gray-800 text-white font-urbanist">
 			<MoviesBackground />
-			<MoviesLists />
+			<SecondContainer />
 			{/* 
 			MainContainer
 			- Video BackGround

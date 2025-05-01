@@ -17,7 +17,7 @@
 - Fetch Data for Trailer Video
 - Update store with Trailer Video Data
 - Embedded the Youtube Video in Background
--
+- Building Movie Lists
 
 # Features
 
