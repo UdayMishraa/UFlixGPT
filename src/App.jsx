@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import Browse from "./components/Browse.jsx";
 import GridLayout from "./components/GridLayout.jsx";
-
 import Login from "./components/Login.jsx";
 import Body from "./components/Body.jsx";
 import appStore from "./utils/appStore.js";
@@ -21,10 +20,6 @@ function App() {
 				{
 					path: "/browse",
 					element: <Browse />,
-				},
-				{
-					path: "/grid",
-					element: <GridLayout />,
 				},
 			],
 		},
