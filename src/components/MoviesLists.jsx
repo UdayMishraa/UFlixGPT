@@ -1,17 +1,32 @@
 import React from "react";
 import MovieCard from "./MovieCard";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const MoviesLists = ({ title, movies }) => {
-	console.log(movies);
 	return (
-		<div className="flex overflow-x-scroll scroll-smooth z-30 ">
-			<div className="flex flex-col gap-6">
-				<h1 className="text-5xl font-bold">{title}</h1>
-				<div className="flex h-full gap-4">
-					{movies.map((movie) => (
-						<MovieCard key={movie.id} posterPath={movie.poster_path} />
-					))}
-				</div>
+		<div className="py-4 bg-black">
+			<h1 className="lg:text-5xl text-2xl font-bold mb-6">{title}</h1>
+			<div className="px-5">
+				<Carousel className="flex justify-center items-center">
+					<CarouselContent>
+						{movies.map((movie) => (
+							<CarouselItem
+								key={movie.id}
+								className="basis-1/4 lg:basis-1/8 pl-2"
+							>
+								<MovieCard posterPath={movie.poster_path} />
+							</CarouselItem>
+						))}
+					</CarouselContent>
+					<CarouselPrevious className="bg-black" />
+					<CarouselNext className="bg-black" />
+				</Carousel>
 			</div>
 		</div>
 	);

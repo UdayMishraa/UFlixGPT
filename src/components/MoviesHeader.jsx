@@ -18,7 +18,7 @@ const MoviesHeader = () => {
 	const { original_title, overview, id } = mainMovie;
 
 	return (
-		<div className="relative h-screen max-h-screen">
+		<div className="relative h-[100vh]">
 			<MovieBackground movieId={id} />
 			<MovieTitle title={original_title} overview={overview} />
 		</div>

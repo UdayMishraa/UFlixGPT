@@ -33,7 +33,7 @@ const Body = () => {
 	}, []);
 
 	return (
-		<div className="relative bg-gray-8000 box-border">
+		<div className="relative box-border">
 			<Header />
 			<Outlet />
 		</div>

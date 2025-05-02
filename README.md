@@ -18,6 +18,8 @@
 - Update store with Trailer Video Data
 - Embedded the Youtube Video in Background
 - Building Movie Lists
+- Added various movie lists like upcoming, popular, top rated etc. and fetched data for the respective
+- Build carousel for the lists
 
 # Features
 

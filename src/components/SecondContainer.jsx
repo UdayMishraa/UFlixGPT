@@ -7,14 +7,22 @@ const SecondContainer = () => {
 
 	return (
 		movies.nowPlayingMovies && (
-			<div className="bg-black flex flex-col gap-4 h-full z-20  lg:px-20 px-10 py-10">
-				<MoviesLists title={"Now Playing"} movies={movies?.nowPlayingMovies} />
-				{/* 
+			<div className="bg-black">
+				<div className=" w-full flex flex-col gap-4 h-max z-30 relative -mt-[15vh]">
+					<MoviesLists
+						title={"Now Playing"}
+						movies={movies?.nowPlayingMovies}
+					/>
+					<MoviesLists title={"Top Rated"} movies={movies?.topRatedMovies} />
+					<MoviesLists title={"Upcoming"} movies={movies?.upcomingMovies} />
+					<MoviesLists title={"Popular"} movies={movies?.popularMovies} />
+					{/* 
         
-Movie Lists - Popular, Top Rated, Upcoming, Now Playing
-
+		Movie Lists - Popular, Top Rated, Upcoming, Now Playing
+		
         
         */}
+				</div>
 			</div>
 		)
 	);

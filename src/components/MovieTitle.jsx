@@ -2,7 +2,7 @@ import React from "react";
 
 const MovieTitle = ({ title, overview }) => {
 	return (
-		<div className="flex flex-col justify-end py-10 gap-2 lg:gap-5 z-20 absolute aspect-video bg-gradient-to-r w-full from-[#000000] transform bottom-0 px-10 lg:px-20">
+		<div className="flex flex-col justify-center py-10 gap-2 lg:gap-5 z-20 absolute aspect-video bg-gradient-to-r w-full from-[#000000] transform bottom-0">
 			<div className="flex flex-col gap-2 lg:gap-6">
 				<h1 className="lg:text-5xl font-[600] text-2xl">{title}</h1>
 				<p className={"text-sm lg:text-xl md:w-[40%] hidden sm:block"}>
