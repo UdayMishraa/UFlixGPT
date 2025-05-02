@@ -96,7 +96,7 @@ const Login = () => {
 
 	return (
 		<>
-			<div className="@container sm:bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg')] bg-fixed bg-center min-h-[100vh] h-svh w-svw bg-gray-800 font-urbanist flex sm:justify-center bg-cover md:items-center">
+			<div className="@container sm:bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_small.jpg')] bg-fixed bg-center min-h-[100vh] h-svh w-svw bg-black font-urbanist flex sm:justify-center bg-cover md:items-center">
 				<div className="bg-black/10 md:bg-[#000000d8] text-[rgb(255,255,255)] text-left p-10 flex items-center sm:w-96 w-full min-h-[500px] mt-10  backdrop-blur-md border border-black/20 rounded-2xl shadow-md">
 					<form className=" flex flex-col justify-start gap-8 md:gap-6 h-full w-full font-secondary text-[14px] ">
 						<h1 className="text-white text-3xl font-[800] font-urbanist ">
