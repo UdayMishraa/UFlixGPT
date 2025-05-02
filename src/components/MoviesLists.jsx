@@ -18,7 +18,7 @@ const MoviesLists = ({ title, movies }) => {
 						{movies.map((movie) => (
 							<CarouselItem
 								key={movie.id}
-								className="basis-1/4 lg:basis-1/8 pl-2"
+								className="basis-1/3 lg:basis-1/8 pl-8"
 							>
 								<MovieCard posterPath={movie.poster_path} />
 							</CarouselItem>
