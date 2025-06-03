@@ -4,23 +4,23 @@ import MoviesLists from "./MoviesLists";
 import Pagination from "./Pagination";
 import usePagination from "../hooks/usePagination";
 import { useState, useEffect } from "react";
-import { addNowPlayingMovies } from "../utils/moviesSlice";
+import { addPopularMovies } from "../utils/moviesSlice";
 import { useDispatch } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import ShimmerLoader from "./ShimmerLoader";
 
-const MoviesNowPlaying = () => {
+const MoviesPopular = () => {
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(1);
 
-	const fetchNowPlaying = async () => {
+	const fetchPopular = async () => {
 		const data = await fetch(
-			`https://api.themoviedb.org/3/movie/now_playing?&page=${page}`,
+			`https://api.themoviedb.org/3/movie/popular?&page=${page}`,
 			API_OPTIONS
 		);
 		const json = await data.json();
 		dispatch(
-			addNowPlayingMovies({
+			addPopularMovies({
 				results: json.results,
 				total_pages: json.total_pages,
 				total_results: json.total_results,
@@ -29,16 +29,11 @@ const MoviesNowPlaying = () => {
 	};
 
 	useEffect(() => {
-		fetchNowPlaying();
-		console.log("MoviesNowPlaying mounted");
-
-		return () => {
-			console.log("MoviesNowPlaying unmounted");
-		};
+		fetchPopular();
 	}, [page]);
-	const movies = useSelector((state) => state?.movies?.nowPlayingMovies);
+	const movies = useSelector((state) => state?.movies?.popularMovies);
 	const totalPages = useSelector(
-		(state) => state?.movies?.nowPlayingData?.totalPages
+		(state) => state?.movies?.popularData?.totalPages
 	);
 
 	const { handleNext, handlePrev } = usePagination(page, setPage, totalPages);
@@ -49,7 +44,7 @@ const MoviesNowPlaying = () => {
 				<ShimmerLoader />
 			) : (
 				<>
-					<MoviesLists title={"Now Playing"} movies={movies} />
+					<MoviesLists title={"Popular"} movies={movies} />
 					<Pagination
 						page={page}
 						onNext={handleNext}
@@ -62,4 +57,4 @@ const MoviesNowPlaying = () => {
 	);
 };
 
-export default MoviesNowPlaying;
+export default MoviesPopular;

@@ -12,7 +12,7 @@ const MovieBackground = ({ movieId }) => {
 				src={
 					trailerVideo?.key
 						? `https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}`
-						: ""
+						: "No trailer available"
 				}
 				title="YouTube Trailer Background"
 				frameBorder="0"

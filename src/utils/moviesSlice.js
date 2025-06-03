@@ -23,21 +23,21 @@ const moviesSlice = createSlice({
 			};
 		},
 		addPopularMovies: (state, action) => {
-			state.popularMovies = action.payload;
+			state.popularMovies = action.payload.results;
 			state.popularData = {
 				totalPages: action.payload.total_pages || 0,
 				totalResults: action.payload.total_results || 0,
 			};
 		},
 		addTopRatedMovies: (state, action) => {
-			state.topRatedMovies = action.payload;
+			state.topRatedMovies = action.payload.results;
 			state.topRatedData = {
 				totalPages: action.payload.total_pages || 0,
 				totalResults: action.payload.total_results || 0,
 			};
 		},
 		addUpcomingMovies: (state, action) => {
-			state.upcomingMovies = action.payload;
+			state.upcomingMovies = action.payload.results;
 			state.upcomingData = {
 				totalPages: action.payload.total_pages || 0,
 				totalResults: action.payload.total_results || 0,
