@@ -12,7 +12,7 @@ const Pagination = ({ page, totalPages, onPrev, onNext }) => {
 						${
 							page === 1
 								? "opacity-40 cursor-not-allowed"
-								: "hover:bg-white hover:text-black"
+								: "hover:bg-[white] hover:text-black"
 						}
 						text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-white`}
 					aria-label="Previous Page"
