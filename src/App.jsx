@@ -5,13 +5,14 @@ import Login from "./components/Login.jsx";
 import Body from "./components/Body.jsx";
 import appStore from "./utils/appStore.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Loader from "./components/Loader.jsx";
 
 function App() {
 	const appRouter = createBrowserRouter([
 		{
 			path: "/",
 			element: <Body />,
-			errorElement: <h1>Page Not Found</h1>,
+			errorElement: <Loader />,
 			children: [
 				{
 					path: "/",
