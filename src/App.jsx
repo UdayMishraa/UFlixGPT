@@ -6,6 +6,7 @@ import Body from "./components/Body.jsx";
 import appStore from "./utils/appStore.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loader from "./components/Loader.jsx";
+import MovieDetails from "./components/MovieDetails.jsx";
 
 function App() {
 	const appRouter = createBrowserRouter([
@@ -21,6 +22,10 @@ function App() {
 				{
 					path: "/browse",
 					element: <Browse />,
+				},
+				{
+					path: "/movie/:movieId",
+					element: <MovieDetails />,
 				},
 			],
 		},

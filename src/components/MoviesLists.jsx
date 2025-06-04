@@ -15,7 +15,7 @@ const MoviesLists = ({ title, movies }) => {
 							key={movie.id}
 							className="min-w-[120px] sm:min-w-[150px] md:min-w-[180px] lg:min-w-[200px] xl:min-w-[220px] flex-shrink-0"
 						>
-							<MovieCard posterPath={movie.poster_path} />
+							<MovieCard posterPath={movie.poster_path} movie={movie} />
 						</div>
 					))}
 				</div>

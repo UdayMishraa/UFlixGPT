@@ -34,7 +34,7 @@ const MoviesHeader = () => {
 	const { original_title, overview, id } = mainMovie;
 
 	return (
-		<div className="relative z-10">
+		<div className="z-20 relative">
 			<MovieBackground movieId={id} />
 			<MovieTitle title={original_title} overview={overview} />
 		</div>
