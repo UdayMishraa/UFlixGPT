@@ -46,13 +46,13 @@ const Header = () => {
 
 	return (
 		<div
-			className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+			className={`w-full sticky top-0 left-0 z-50 transition-all duration-300 ${
 				isScrolled
 					? "bg-black bg-opacity-80 shadow-lg shadow-[#ffffff3b]"
 					: "bg-transparent"
 			} h-20`}
 		>
-			<div className="px-4 h-20 sm:px-6 flex justify-between items-center md:px-10 lg:px-20 max-w-screen-2xl mx-auto py-3">
+			<div className="px-4 sm:px-6 flex justify-between items-center md:px-10 lg:px-20 max-w-screen-2xl mx-auto py-3">
 				<img
 					src={LOGO}
 					alt="Netflix Logo"
@@ -83,7 +83,6 @@ const Header = () => {
 								))}
 							</ul>
 						)}
-
 						<img
 							src={user?.photoURL}
 							alt="Profile"

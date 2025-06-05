@@ -7,6 +7,8 @@ import appStore from "./utils/appStore.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loader from "./components/Loader.jsx";
 import MovieDetails from "./components/MovieDetails.jsx";
+import SearchMovies from "./components/SearchMovies.jsx";
+import Trailer from "./components/Trailer.jsx";
 
 function App() {
 	const appRouter = createBrowserRouter([
@@ -22,10 +24,20 @@ function App() {
 				{
 					path: "/browse",
 					element: <Browse />,
+					children: [
+						{
+							path: "/browse/search-movies",
+							element: <SearchMovies />,
+						},
+					],
 				},
 				{
 					path: "/movie/:movieId",
 					element: <MovieDetails />,
+				},
+				{
+					path: "/trailer",
+					element: <Trailer />,
 				},
 			],
 		},

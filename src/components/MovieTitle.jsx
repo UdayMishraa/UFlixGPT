@@ -2,7 +2,7 @@ import React from "react";
 
 const MovieTitle = ({ title, overview }) => {
 	return (
-		<div className="absolute inset-0 z-50 flex items-end bg-gradient-to-r from-black/90 via-black/60 to-transparent w-full aspect-video">
+		<div className="absolute inset-0 z-30 flex items-end bg-gradient-to-r from-black/90 via-black/60 to-transparent w-full aspect-video">
 			<div className="p-4 sm:p-6 lg:p-12 text-white max-w-screen-xl w-full">
 				<div className="flex flex-col gap-2 lg:gap-5">
 					<h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold">

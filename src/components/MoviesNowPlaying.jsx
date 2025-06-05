@@ -30,11 +30,6 @@ const MoviesNowPlaying = () => {
 
 	useEffect(() => {
 		fetchNowPlaying();
-		console.log("MoviesNowPlaying mounted");
-
-		return () => {
-			console.log("MoviesNowPlaying unmounted");
-		};
 	}, [page]);
 	const movies = useSelector((state) => state?.movies?.nowPlayingMovies);
 	const totalPages = useSelector(

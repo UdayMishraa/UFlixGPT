@@ -10,6 +10,7 @@ const moviesSlice = createSlice({
 		movieBackground: null,
 		searchMovies: null,
 		movieDetails: null,
+		movieId: null,
 		nowPlayingData: { totalPages: 0, totalResults: 0 },
 		popularData: { totalPages: 0, totalResults: 0 },
 		topRatedData: { totalPages: 0, totalResults: 0 },
@@ -48,10 +49,13 @@ const moviesSlice = createSlice({
 			state.movieBackground = action.payload;
 		},
 		addSearchMovies: (state, action) => {
-			state.movieBackground = action.payload;
+			state.searchMovies = action.payload;
 		},
 		addMovieDetails: (state, action) => {
 			state.movieDetails = action.payload;
+		},
+		addId: (state, action) => {
+			state.movieId = action.payload;
 		},
 	},
 });
@@ -65,4 +69,5 @@ export const {
 	addMovieBackground,
 	addSearchMovies,
 	addMovieDetails,
+	addId,
 } = moviesSlice.actions;

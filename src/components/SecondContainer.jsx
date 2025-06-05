@@ -16,7 +16,7 @@ const SecondContainer = () => {
 
 	return (
 		<div className="bg-black">
-			<div className="w-full flex flex-col gap-4 h-max z-30 relative">
+			<div className="w-full flex flex-col gap-4 h-max z-20 relative">
 				<SearchMovies />
 
 				<LazyLoadSection onVisibleChange={() => setShowNowPlaying(true)}>

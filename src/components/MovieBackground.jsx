@@ -5,6 +5,14 @@ const MovieBackground = ({ movieId }) => {
 	const trailerVideo = useSelector((store) => store.movies?.movieBackground);
 	useMovieBackground(movieId);
 
+	if (!trailerVideo) {
+		return (
+			<div className="flex justify-center items-center h-screen">
+				<h1 className="text-3xl text-white">Loading trailer...</h1>
+			</div>
+		);
+	}
+
 	return (
 		<div className="relative w-full aspect-video overflow-hidden z-0">
 			<iframe

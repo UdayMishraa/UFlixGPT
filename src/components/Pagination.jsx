@@ -2,8 +2,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 const Pagination = ({ page, totalPages, onPrev, onNext }) => {
 	return (
-		<div className="flex flex-col lg:flex-row items-end justify-center lg:justify-end rounded-lg shadow-lg py-4 px-6 bg-black">
-			<div className="flex items-center gap-4 justify-center">
+		<div className="flex flex-col lg:flex-row items-end justify-center  rounded-lg shadow-lg py-4 px-6 bg-black">
+			<div className="flex items-center gap-4 justify-center lg:justify-end">
 				{/* Prev Button */}
 				<button
 					onClick={onPrev}

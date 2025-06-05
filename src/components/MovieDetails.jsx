@@ -1,8 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { FaCalendarWeek, FaPlay, FaPlus, FaStar } from "react-icons/fa";
+import { MdOutlineMovie } from "react-icons/md";
 
+import { addId } from "../utils/moviesSlice";
+import { useNavigate } from "react-router-dom";
 const MovieDetails = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const movieDetails = useSelector((store) => store?.movies?.movieDetails);
+	console.log("Movie Details:", movieDetails);
 
 	if (!movieDetails) {
 		return (
@@ -11,6 +18,10 @@ const MovieDetails = () => {
 			</div>
 		);
 	}
+	const handlePlay = () => {
+		dispatch(addId(movieDetails.id));
+		navigate("/trailer");
+	};
 
 	const {
 		title,
@@ -58,21 +69,31 @@ const MovieDetails = () => {
 					{/* Tags and Meta Info */}
 					<div className="flex flex-wrap gap-3 text-sm mt-4">
 						<span className="bg-red-600 px-4 py-1 rounded-full font-semibold">
-							⭐ {vote_average?.toFixed(1)} / 10
+							<FaStar className="inline-block mr-2" />{" "}
+							<span>{vote_average?.toFixed(1)} / 10</span>
 						</span>
 						<span className="bg-gray-700 px-4 py-1 rounded-full">
-							📅 {new Date(release_date).toLocaleDateString()}
+							<FaCalendarWeek className="inline-block mr-2" />{" "}
+							<span>{new Date(release_date).toLocaleDateString()}</span>
 						</span>
-						<span className="bg-gray-700 px-4 py-1 rounded-full">🎬 Movie</span>
+						<span className="bg-gray-700 px-4 py-1 rounded-full">
+							<MdOutlineMovie className="inline-block mr-2" />
+							<span>Movie</span>{" "}
+						</span>
 					</div>
 
 					{/* Action Buttons */}
 					<div className="flex gap-4 mt-6">
-						<button className="bg-white text-black px-6 py-2 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg">
-							▶️ Play
+						<button
+							className="bg-white text-black px-6 py-2 rounded-lg text-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg"
+							onClick={handlePlay}
+						>
+							<FaPlay className="inline-block mr-2" />
+							<span>Play</span>
 						</button>
-						<button className="bg-gray-800 text-white px-6 py-2 rounded-lg text-lg font-medium hover:bg-gray-700 transition-all shadow-md">
-							➕ Add to My List
+						<button className="bg-gray-800 text-white px-6 py-2 rounded-lg text-lg font-medium hover:bg-gray-700 transition-all shadow-md flex items-center gap-2 justify-between">
+							<FaPlus />
+							<span className="inline-block mr-2">Add to My List</span>
 						</button>
 					</div>
 				</div>

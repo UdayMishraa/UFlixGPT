@@ -11,6 +11,10 @@ export const fetchSearchResults = createAsyncThunk(
 			)}`,
 			API_OPTIONS
 		);
+		if (!res.ok) {
+			throw new Error("Failed to fetch search results");
+		}
+
 		const data = await res.json();
 		return data.results || [];
 	}
