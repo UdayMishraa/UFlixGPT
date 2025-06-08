@@ -9,7 +9,7 @@ const Trailer = () => {
 	useMovieBackground(movieId);
 
 	return (
-		<div className="relative h-screen w-full aspect-video overflow-hidden z-0">
+		<div className="relative h-screen flex justify-center items-center w-full aspect-video overflow-hidden z-0">
 			<YouTubePlayer
 				videoUrl={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=0&controls=1&loop=1&disablekb=1`}
 			/>

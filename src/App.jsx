@@ -24,12 +24,6 @@ function App() {
 				{
 					path: "/browse",
 					element: <Browse />,
-					children: [
-						{
-							path: "/browse/search-movies",
-							element: <SearchMovies />,
-						},
-					],
 				},
 				{
 					path: "/movie/:movieId",

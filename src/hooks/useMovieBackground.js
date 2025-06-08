@@ -7,7 +7,7 @@ const useMovieBackground = (movieId) => {
 	const dispatch = useDispatch();
 	const getMovieBackground = async () => {
 		const data = await fetch(
-			`https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+			`https://api.themoviedb.org/3/movie/${movieId}/videos`,
 			API_OPTIONS
 		);
 		const res = await data.json();
