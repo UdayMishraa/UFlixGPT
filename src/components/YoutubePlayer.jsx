@@ -49,7 +49,7 @@ const YoutubePlayer = ({ videoUrl }) => {
 				<div className="flex justify-between items-center">
 					<button
 						onClick={handlePlayPause}
-						className="bg-white text-black font-bold px-4 py-1 rounded-full hover:bg-pink-600 hover:text-white transition"
+						className="bg-white text-black font-bold px-4 py-1 rounded-full hover:bg-red-600 hover:text-white transition"
 					>
 						{playing ? "⏸ Pause" : "▶ Play"}
 					</button>

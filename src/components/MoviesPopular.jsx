@@ -12,20 +12,28 @@ import ShimmerLoader from "./ShimmerLoader";
 const MoviesPopular = () => {
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(1);
+	const [loading, setLoading] = useState(true);
 
 	const fetchPopular = async () => {
-		const data = await fetch(
-			`https://api.themoviedb.org/3/movie/popular?&page=${page}`,
-			API_OPTIONS
-		);
-		const json = await data.json();
-		dispatch(
-			addPopularMovies({
-				results: json.results,
-				total_pages: json.total_pages,
-				total_results: json.total_results,
-			})
-		);
+		setLoading(true);
+		try {
+			const data = await fetch(
+				`https://api.themoviedb.org/3/movie/popular?&page=${page}`,
+				API_OPTIONS
+			);
+			const json = await data.json();
+			dispatch(
+				addPopularMovies({
+					results: json.results,
+					total_pages: json.total_pages,
+					total_results: json.total_results,
+				})
+			);
+		} catch (error) {
+			console.error("Error fetching popular movies:", error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -40,7 +48,7 @@ const MoviesPopular = () => {
 
 	return (
 		<div className="bg-black ">
-			{!movies ? (
+			{loading ? (
 				<ShimmerLoader />
 			) : (
 				<>

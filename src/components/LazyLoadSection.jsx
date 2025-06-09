@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const LazyLoadSection = ({ onVisibleChange, children }) => {
 	const ref = useRef();
+	const [hasIntersected, setHasIntersected] = useState(false);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				if (onVisibleChange) {
-					onVisibleChange(entry.isIntersecting);
+				if (entry.isIntersecting && !hasIntersected) {
+					setHasIntersected(true);
+					if (onVisibleChange) onVisibleChange(true);
 				}
 			},
 			{
@@ -22,7 +24,7 @@ const LazyLoadSection = ({ onVisibleChange, children }) => {
 		return () => {
 			if (ref.current) observer.unobserve(ref.current);
 		};
-	}, [onVisibleChange]);
+	}, [onVisibleChange, hasIntersected]);
 
 	return <div ref={ref}>{children}</div>;
 };

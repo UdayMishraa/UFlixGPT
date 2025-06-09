@@ -12,20 +12,28 @@ import usePagination from "../hooks/usePagination";
 const MoviesUpcoming = () => {
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(1);
+	const [loading, setLoading] = useState(true);
 
 	const fetchUpcoming = async () => {
-		const data = await fetch(
-			`https://api.themoviedb.org/3/movie/upcoming?&page=${page}`,
-			API_OPTIONS
-		);
-		const json = await data.json();
-		dispatch(
-			addUpcomingMovies({
-				results: json.results,
-				total_pages: json.total_pages,
-				total_results: json.total_results,
-			})
-		);
+		setLoading(true);
+		try {
+			const data = await fetch(
+				`https://api.themoviedb.org/3/movie/upcoming?&page=${page}`,
+				API_OPTIONS
+			);
+			const json = await data.json();
+			dispatch(
+				addUpcomingMovies({
+					results: json.results,
+					total_pages: json.total_pages,
+					total_results: json.total_results,
+				})
+			);
+		} catch (error) {
+			console.error("Error fetching upcoming movies:", error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -37,8 +45,8 @@ const MoviesUpcoming = () => {
 	);
 	const { handleNext, handlePrev } = usePagination(page, setPage, totalPages);
 	return (
-		<div className="bg-black ">
-			{!movies ? (
+		<div className="bg-black h-max">
+			{loading ? (
 				<ShimmerLoader />
 			) : (
 				<>

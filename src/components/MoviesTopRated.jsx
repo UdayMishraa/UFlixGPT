@@ -13,20 +13,28 @@ import ShimmerLoader from "./ShimmerLoader";
 const MoviesTopRated = () => {
 	const dispatch = useDispatch();
 	const [page, setPage] = useState(1);
+	const [loading, setLoading] = useState(true);
 
 	const fetchTopRated = async () => {
-		const data = await fetch(
-			`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`,
-			API_OPTIONS
-		);
-		const json = await data.json();
-		dispatch(
-			addTopRatedMovies({
-				results: json.results,
-				total_pages: json.total_pages,
-				total_results: json.total_results,
-			})
-		);
+		setLoading(true);
+		try {
+			const data = await fetch(
+				`https://api.themoviedb.org/3/movie/top_rated?&page=${page}`,
+				API_OPTIONS
+			);
+			const json = await data.json();
+			dispatch(
+				addTopRatedMovies({
+					results: json.results,
+					total_pages: json.total_pages,
+					total_results: json.total_results,
+				})
+			);
+		} catch (error) {
+			console.error("Error fetching top rated movies:", error);
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -41,7 +49,7 @@ const MoviesTopRated = () => {
 
 	return (
 		<div className="bg-black ">
-			{!movies ? (
+			{loading ? (
 				<ShimmerLoader />
 			) : (
 				<>
