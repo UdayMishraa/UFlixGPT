@@ -3,12 +3,13 @@ import Browse from "./components/Browse.jsx";
 import GridLayout from "./components/GridLayout.jsx";
 import Login from "./components/Login.jsx";
 import Body from "./components/Body.jsx";
-import appStore from "./utils/appStore.js";
+import appStore, { persistor } from "./utils/appStore.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loader from "./components/Loader.jsx";
 import MovieDetails from "./components/MovieDetails.jsx";
 import SearchMovies from "./components/SearchMovies.jsx";
 import Trailer from "./components/Trailer.jsx";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
 	const appRouter = createBrowserRouter([
@@ -38,7 +39,9 @@ function App() {
 	]);
 	return (
 		<Provider store={appStore}>
-			<RouterProvider router={appRouter} />
+			<PersistGate loading={<Loader />} persistor={persistor}>
+				<RouterProvider router={appRouter} />
+			</PersistGate>
 		</Provider>
 	);
 }

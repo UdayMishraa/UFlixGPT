@@ -1,16 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaCalendarWeek, FaPlay, FaPlus, FaStar } from "react-icons/fa";
+import {
+	FaCalendarWeek,
+	FaMinus,
+	FaPlay,
+	FaPlus,
+	FaStar,
+} from "react-icons/fa";
 import { MdOutlineMovie } from "react-icons/md";
 
 import { addId } from "../utils/moviesSlice";
 import { useNavigate } from "react-router-dom";
+import { addToWatchLater, removeFromWatchLater } from "../utils/watchLater";
 const MovieDetails = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const movieDetails = useSelector((store) => store?.movies?.movieDetails);
 	console.log("Movie Details:", movieDetails);
 
+	const watchLaterMovies = useSelector(
+		(store) => store?.watchLater?.wishlist || []
+	);
+	console.log("Watch Later Movies:", watchLaterMovies);
+	const isMovieInWatchLater = watchLaterMovies.some(
+		(movie) => movie.id === movieDetails?.id
+	);
 	if (!movieDetails) {
 		return (
 			<div className="h-screen bg-black text-white flex items-center justify-center font-urbanist">
@@ -91,9 +105,22 @@ const MovieDetails = () => {
 							<FaPlay className="inline-block mr-2" />
 							<span>Play</span>
 						</button>
-						<button className="bg-gray-800 text-white px-6 py-2 rounded-lg text-lg font-medium hover:bg-gray-700 transition-all shadow-md flex items-center gap-2 justify-between">
-							<FaPlus />
-							<span className="inline-block mr-2">Add to My List</span>
+						<button
+							className="bg-gray-800 text-white px-6 py-2 rounded-lg text-lg font-medium hover:bg-gray-700 transition-all shadow-md flex items-center gap-2 justify-between ease-in-out duration-300"
+							onClick={() => {
+								isMovieInWatchLater
+									? dispatch(removeFromWatchLater(movieDetails.id))
+									: dispatch(addToWatchLater(movieDetails));
+							}}
+						>
+							{isMovieInWatchLater ? (
+								<FaMinus className="inline-block mr-2" />
+							) : (
+								<FaPlus className="inline-block mr-2" />
+							)}
+							<span className="inline-block mr-2">
+								{isMovieInWatchLater ? "Remove from My List" : "Add to My List"}
+							</span>
 						</button>
 					</div>
 				</div>

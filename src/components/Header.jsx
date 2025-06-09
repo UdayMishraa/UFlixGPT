@@ -5,10 +5,12 @@ import { signOut } from "firebase/auth";
 import { LOGO } from "../utils/constants.js";
 import { useSelector } from "react-redux";
 import useMovieSearch from "../hooks/useMovieSearch.js";
+import WatchLater from "./WatchLater.jsx";
 
 const Header = () => {
 	const navigate = useNavigate();
 	const user = useSelector((store) => store.user);
+
 	const {
 		localInput,
 		suggestions,
@@ -16,20 +18,20 @@ const Header = () => {
 		handleInputChange,
 		handleSuggestionClick,
 		setSuggestions,
-		handleKeyDown, // required to clear suggestions
+		handleKeyDown,
 	} = useMovieSearch();
 
 	const inputRef = useRef(null);
 	const [isScrolled, setIsScrolled] = useState(false);
 
-	// Handle scroll styling
+	// Add scroll effect
 	useEffect(() => {
 		const handleScroll = () => setIsScrolled(window.scrollY > 10);
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	// Close suggestions when clicking outside input/search area
+	// Click outside to close search suggestions
 	useEffect(() => {
 		const handleClickOutside = (e) => {
 			if (inputRef.current && !inputRef.current.contains(e.target)) {
@@ -55,6 +57,7 @@ const Header = () => {
 			} h-20`}
 		>
 			<div className="px-4 sm:px-6 flex justify-between items-center md:px-10 lg:px-20 max-w-screen-2xl mx-auto py-3">
+				{/* Logo */}
 				<Link to={"/browse"}>
 					<img
 						src={LOGO}
@@ -62,8 +65,14 @@ const Header = () => {
 						className="w-24 sm:w-28 md:w-36 cursor-pointer"
 					/>
 				</Link>
+
+				{/* Logged-in User Section */}
 				{user && (
-					<div className="relative flex gap-3 items-center" ref={inputRef}>
+					<div className="relative flex gap-4 items-center" ref={inputRef}>
+						{/* Watch Later Button */}
+						<WatchLater />
+
+						{/* Search Input */}
 						<input
 							type="text"
 							placeholder="Search movies..."
@@ -91,6 +100,8 @@ const Header = () => {
 								))}
 							</ul>
 						)}
+
+						{/* Profile + Sign Out */}
 						<img
 							src={user?.photoURL}
 							alt="Profile"
